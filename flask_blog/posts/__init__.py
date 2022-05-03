@@ -12,24 +12,20 @@ bcrypt = Bcrypt()
 def create_app():
     print(__name__)
     app = Flask(__name__)
+    # Регистрируем бюлпринт main
+    from flask_blog.main.routes import main
+    app.register_blueprint(main)
+    app.config.from_object(Config)
 
-    # БД
-    db.init_app(app)
     # Регистрация логин-менеджера
     login_manager.init_app(app)
+
     # pwd
     bcrypt.init_app(app)
 
-    from flask_blog.main.routes import main
-    from flask_blog.users.routes import users
-    from flask_blog.posts.routes import posts
-
-    # Регистрируем бюлпринт main
-    app.register_blueprint(main)
-    app.config.from_object(Config)
     # Регистируем приложение users
+    from flask_blog.users.routes import users
     app.register_blueprint(users)
-    # Регистрация posts
-    app.register_blueprint(posts)
 
+    db.init_app(app)
     return app

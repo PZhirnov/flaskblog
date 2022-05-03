@@ -64,18 +64,27 @@
       <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container">
           <a class="navbar-brand mr-4" href="/" style="color: rgb(7, 85, 173); font-family: 'Lobster', cursive; font-weight: 800; font-size: 30px;">Мой блог</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+                  aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           {% if current_user.is_authenticated %}
             <h4>Привет, {{ current_user.username }}!</h4>
+
           {% endif %}
           <div class="collapse navbar-collapse" id="navbarToggle" style="justify-content: flex-end;">
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
                 {% if current_user.is_authenticated %}
+                    <a class="nav-item nav-link navigation-links" href="{{ url_for('posts.new_post') }}">
+                        <i class="fa fa-plus">
+                            Новый пост
+                        </i>
+                    </a>
                     <a class="nav-item nav-link navigation-links" href="{{url_for('users.account') }}">
                         <i class="fa fa-user"></i>Профиль</a>
+                    <a class="nav-item nav-link navigation-links" href="{{ url_for('posts.allpost') }}">
+                        <i class="fa fa-user"></i>Записи блога</a>
                     <a class="nav-item nav-link navigation-links" href="{{ url_for('users.logout') }}">
                         <i class="fa fa-sign-out"></i>Выйти</a>
                 {% else %}
