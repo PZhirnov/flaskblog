@@ -72,7 +72,17 @@
           {% endif %}
           <div class="collapse navbar-collapse" id="navbarToggle" style="justify-content: flex-end;">
             <!-- Navbar Right Side -->
-
+            <div class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                    <a class="nav-item nav-link navigation-links" href="{{url_for('users.account') }}">
+                        <i class="fa fa-user"></i>Профиль</a>
+                    <a class="nav-item nav-link navigation-links" href="{{ url_for('users.logout') }}">
+                        <i class="fa fa-sign-out"></i>Выйти</a>
+                {% else %}
+                    <a class="nav-link nav-item navigation-links" href="{{url_for('users.login')}}">Войти</a>
+                    <a class="nav-link nav-item navigation-links" href="{{url_for('users.register') }}">Зарегистрироваться</a>
+                {% endif %}
+            </div>
           </div>
         </div>
       </nav>
