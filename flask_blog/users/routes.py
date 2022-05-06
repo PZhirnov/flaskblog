@@ -107,7 +107,6 @@ def reset_request():
         return redirect(url_for('users.login'))
     return render_template('reset_request.html', title='Сброс пароля', form=form)
 
-
 @users.route('/reset-password/<token>', methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated:
